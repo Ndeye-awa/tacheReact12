@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import { ThemeProvider, ThemeContext } from './ThemeContext';
+import Header from './Header';
+import ThemeChanger from './ThemeChanger';
 
 function App() {
+  const { couleurPrincipale, police } = useContext(ThemeContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <ThemeProvider>
+      <div className="App">
+        <Header />
+        <p style={{ color: couleurPrincipale, fontFamily: police }}>
+          Thème : {couleurPrincipale} - Police : {police}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <ThemeChanger />
+      </div>
+    </ThemeProvider>
   );
 }
 
